@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found – Zulu Logistics</title>
 <meta name="description" content="Zulu Logistics – AI-powered truck dispatch for owner-operators and small fleets across 48 states. High-paying loads, fair rates, less hassle.">
-<meta property="og:title" content="Zulu Logistics – AI-Powered Truck Dispatch Services">
+<meta property="og:title" content="Zulu Logistics">
 <meta property="og:description" content="Zulu Logistics – AI-powered truck dispatch for owner-operators and small fleets across 48 states. High-paying loads, fair rates, less hassle.">
 <meta property="og:image" content="https://zululogisticshub.com/hero-hotshot.jpg">
 <meta property="og:type" content="website">
@@ -204,9 +204,9 @@
 <form class="zl-form" data-form="review" style="flex: 1 1 380px; min-width: 0; background: #F4F6F9; border: 1px solid #E1E6EE; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box;">
 <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; color: #0B1F3A;">Write a Review</h3>
 <div role="status" hidden data-success style="padding: 16px; border-radius: 12px; background: #E8F5EC; color: #145A2E; font-size: 15px; font-weight: 600;">Thank you for your review! Our team will review it before it appears on the site.</div>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Your Name *<input class="zl-input" type="text" name="name" required="" autocomplete="name"></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Company / MC Number<input class="zl-input" type="text" name="company"></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Truck Type<select class="zl-input" name="truck">
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Your Name *<input class="zl-input" type="text" name="fi-sender-fullName" required="" autocomplete="name"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Company / MC Number<input class="zl-input" type="text" name="fi-text-company"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Truck Type<select class="zl-input" name="fi-select-truckType">
 <option value="">Select…</option>
 <option value="Box Truck">Box Truck</option><option value="Hotshot">Hotshot</option><option value="Dry Van">Dry Van</option><option value="Reefer">Reefer</option><option value="Flatbed">Flatbed</option><option value="Step Deck">Step Deck</option><option value="RGN & Lowboy">RGN &amp; Lowboy</option><option value="Power Only">Power Only</option>
 </select></label>
@@ -216,8 +216,8 @@
 </div>
 <span role="alert" hidden data-rating-error style="font-weight: 500; font-size: 13px; color: #B42318;">Please choose a rating.</span>
 </div>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Your Review *<textarea class="zl-input" name="text" rows="4" required="" placeholder="How was your experience with our dispatch team and the loads we booked for you?" style="resize: vertical;"></textarea></label>
-<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #3D4A5C;"><input type="checkbox" name="confirm" required="" style="width: 20px; height: 20px; margin-top: 1px; flex: none;"><span>I confirm I have worked with Zulu Logistics and this review is based on my own experience.</span></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Your Review *<textarea class="zl-input" name="fi-text-review" rows="4" required="" placeholder="How was your experience with our dispatch team and the loads we booked for you?" style="resize: vertical;"></textarea></label>
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #3D4A5C;"><input type="checkbox" value="Yes" name="fi-checkbox-confirmedCustomer" required="" style="width: 20px; height: 20px; margin-top: 1px; flex: none;"><span>I confirm I have worked with Zulu Logistics and this review is based on my own experience.</span></label>
 <button type="submit" class="zl-btn zl-btn-primary" style="border: 0; cursor: pointer; align-self: flex-start;">Submit Review</button>
 </form>
 </div>
@@ -241,19 +241,19 @@
 <div role="status" hidden data-success style="padding: 24px; border-radius: 12px; background: #E8F5EC; color: #145A2E; font-size: 18px; font-weight: 600;">Thank you! Our dispatch team will contact you shortly. </div>
 <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; color: #0B1F3A;">Request a Quote</h3>
 <div style="display: flex; flex-direction: column; gap: 16px;">
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Full Name *<input class="zl-input" type="text" name="name" required="" autocomplete="name"></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Phone *<input class="zl-input" type="tel" name="phone" required="" autocomplete="tel"></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Email *<input class="zl-input" type="email" name="email" required="" autocomplete="email"></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">MC Number *<input class="zl-input" type="text" name="mc" required=""></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Truck Type *<select class="zl-input" name="truck" required="">
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Full Name *<input class="zl-input" type="text" name="fi-sender-fullName" required="" autocomplete="name"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Phone *<input class="zl-input" type="tel" name="fi-text-phone" required="" autocomplete="tel"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Email *<input class="zl-input" type="email" name="fi-sender-email" required="" autocomplete="email"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">MC Number *<input class="zl-input" type="text" name="fi-text-mcNumber" required=""></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Truck Type *<select class="zl-input" name="fi-select-truckType" required="">
 <option value="">Select…</option>
 <option value="Box Truck">Box Truck</option><option value="Hotshot">Hotshot</option><option value="Dry Van">Dry Van</option><option value="Reefer">Reefer</option><option value="Flatbed">Flatbed</option><option value="Step Deck">Step Deck</option><option value="RGN & Lowboy">RGN &amp; Lowboy</option><option value="Power Only">Power Only</option>
 </select></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Trailer Length (ft)<input class="zl-input" type="number" name="length" min="0"></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Notes<textarea class="zl-input" name="notes" rows="4" placeholder="Preferred lanes, home time, equipment details or anything else we should know" style="resize: vertical;"></textarea></label>
-<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Attach Documents<input class="zl-input zl-file" type="file" name="documents" multiple="" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"><span style="font-weight: 400; font-size: 13px; color: #5B6778;">Optional: MC authority, insurance, W-9 or other documents. PDF, JPG, PNG or Word.</span></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Trailer Length (ft)<input class="zl-input" type="number" name="fi-text-trailerLength" min="0"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Notes<textarea class="zl-input" name="fi-text-notes" rows="4" placeholder="Preferred lanes, home time, equipment details or anything else we should know" style="resize: vertical;"></textarea></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px;">Attach Documents<input class="zl-input zl-file" type="file" name="fi-file-documents[]" multiple="" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"><span style="font-weight: 400; font-size: 13px; color: #5B6778;">Optional: MC authority, insurance, W-9 or other documents. PDF, JPG, PNG or Word.</span></label>
 </div>
-<label style="display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #3D4A5C;"><input type="checkbox" name="sms" style="width: 22px; height: 22px; margin-top: 2px; flex: none;"><span>I agree to receive SMS messages about Dispatch Details from Zulu Logistics at the number provided. Message frequency may vary. Message and data rates may apply. Text HELP to 510-996-4492 for assistance. Reply STOP to unsubscribe. <a href="privacy-policy.html" class="zl-txt-link">Privacy Policy</a> · <a href="terms-conditions.html" class="zl-txt-link">Terms &amp; Conditions</a></span></label>
+<label style="display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #3D4A5C;"><input type="checkbox" value="Yes" name="fi-checkbox-smsConsent" style="width: 22px; height: 22px; margin-top: 2px; flex: none;"><span>I agree to receive SMS messages about Dispatch Details from Zulu Logistics at the number provided. Message frequency may vary. Message and data rates may apply. Text HELP to 510-996-4492 for assistance. Reply STOP to unsubscribe. <a href="privacy-policy.html" class="zl-txt-link">Privacy Policy</a> · <a href="terms-conditions.html" class="zl-txt-link">Terms &amp; Conditions</a></span></label>
 <button type="submit" class="zl-btn zl-btn-primary" style="border: 0; cursor: pointer; align-self: flex-start;">Submit</button>
 </form>
 </div>

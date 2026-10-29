@@ -54,7 +54,7 @@
   });
 
   // Forms. FORM_ENDPOINT is set when a form service is connected.
-  var FORM_ENDPOINT = window.ZL_FORM_ENDPOINT || '';
+  var FORM_ENDPOINT = 'https://forminit.com/f/ady9nm3w3sw';
   document.querySelectorAll('form.zl-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -65,8 +65,10 @@
         return;
       }
       var data = new FormData(form);
-      data.append('form_type', kind);
-      if (kind === 'review') data.append('rating', rating);
+      data.append('fi-text-formType', kind === 'quote' ? 'Get a Quote' : kind === 'contact' ? 'Contact Us' : 'Carrier Review');
+      if (kind === 'review') data.append('fi-rating-rating', String(rating));
+      // drop empty file inputs so the request stays small
+      data.getAll('fi-file-documents[]').forEach(function (f) { if (f && f.size === 0) data.delete('fi-file-documents[]'); });
       var btn = form.querySelector('button[type="submit"]');
       function done() {
         var ok = form.querySelector('[data-success]');
@@ -77,8 +79,8 @@
       }
       if (!FORM_ENDPOINT) { done(); return; }
       if (btn) btn.disabled = true;
-      fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-        .then(function (r) { if (!r.ok) throw new Error('send failed'); done(); })
+      fetch(FORM_ENDPOINT, { method: 'POST', body: data })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || j.success === false) throw new Error(j.message || 'send failed'); done(); }); })
         .catch(function () {
           if (btn) btn.disabled = false;
           alert('Sorry, your message could not be sent. Please call 510-996-4492 or email info@zululogisticshub.com.');
