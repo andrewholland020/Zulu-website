@@ -53,6 +53,46 @@
     });
   });
 
+  // Approved reviews come from the Google Sheet (tick "Approved"); reviews.json is a backup list.
+  var REVIEWS_URL = 'https://script.google.com/macros/s/AKfycbw9nKyw6nfvmM7SiD2Kpwv0frjuuS4iXPvE1g2Kh0E2M1L2IKNmK_oNTS2uS-C-bLm_aA/exec';
+  var list = document.querySelector('[data-review-list]');
+  function getJson(url) {
+    return fetch(url, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });
+  }
+  if (list && window.fetch) {
+    Promise.all([getJson(REVIEWS_URL), getJson('reviews.json')])
+      .then(function (res) { return [].concat(Array.isArray(res[0]) ? res[0] : [], Array.isArray(res[1]) ? res[1] : []); })
+      .then(function (items) {
+        if (!Array.isArray(items) || !items.length) return;
+        var empty = document.querySelector('[data-no-reviews]');
+        if (empty) empty.hidden = true;
+        items.forEach(function (it) {
+          var n = Math.max(1, Math.min(5, parseInt(it.rating, 10) || 5));
+          var card = document.createElement('div');
+          card.className = 'zl-review';
+          var st = document.createElement('span');
+          st.setAttribute('aria-label', n + ' out of 5 stars');
+          st.style.cssText = 'font-size:20px;letter-spacing:2px;color:#F28C28';
+          st.textContent = '★'.repeat(n) + '☆'.repeat(5 - n);
+          var tx = document.createElement('p');
+          tx.style.cssText = 'margin:0;font-size:15px;line-height:1.65;color:#26313F';
+          tx.textContent = '“' + (it.review || '') + '”';
+          var foot = document.createElement('div');
+          foot.style.cssText = 'margin-top:auto;padding-top:14px;border-top:1px solid #E1E6EE';
+          var nm = document.createElement('p');
+          nm.style.cssText = 'margin:0;font-weight:700;font-size:15px;color:#0B1F3A';
+          nm.textContent = it.name || 'Carrier';
+          var meta = document.createElement('p');
+          meta.style.cssText = 'margin:2px 0 0;font-size:13px;color:#5B6778';
+          meta.textContent = [it.company, it.truck].filter(Boolean).join(' · ') || 'Carrier';
+          foot.appendChild(nm); foot.appendChild(meta);
+          card.appendChild(st); card.appendChild(tx); card.appendChild(foot);
+          list.appendChild(card);
+        });
+      })
+      .catch(function () {});
+  }
+
   // Forms. FORM_ENDPOINT is set when a form service is connected.
   var FORM_ENDPOINT = 'https://forminit.com/f/ady9nm3w3sw';
   document.querySelectorAll('form.zl-form').forEach(function (form) {
@@ -76,6 +116,15 @@
         form.reset();
         if (kind === 'review') { rating = 0; stars.forEach(function (s) { s.classList.remove('on'); s.setAttribute('aria-checked', 'false'); }); }
         if (btn) btn.disabled = false;
+      }
+      if (kind === 'review' && REVIEWS_URL) {
+        var sheetData = new URLSearchParams();
+        sheetData.append('name', form.querySelector('[name="fi-sender-fullName"]').value);
+        sheetData.append('company', form.querySelector('[name="fi-text-company"]').value);
+        sheetData.append('truck', form.querySelector('[name="fi-select-truckType"]').value);
+        sheetData.append('review', form.querySelector('[name="fi-text-review"]').value);
+        sheetData.append('rating', String(rating));
+        fetch(REVIEWS_URL, { method: 'POST', mode: 'no-cors', body: sheetData }).catch(function () {});
       }
       if (!FORM_ENDPOINT) { done(); return; }
       if (btn) btn.disabled = true;
