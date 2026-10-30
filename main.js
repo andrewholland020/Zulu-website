@@ -60,7 +60,7 @@
     return fetch(url, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });
   }
   if (list && window.fetch) {
-    Promise.all([getJson(REVIEWS_URL), getJson('reviews.json')])
+    Promise.all([getJson(REVIEWS_URL), getJson('/reviews.json')])
       .then(function (res) { return [].concat(Array.isArray(res[0]) ? res[0] : [], Array.isArray(res[1]) ? res[1] : []); })
       .then(function (items) {
         if (!Array.isArray(items) || !items.length) return;
