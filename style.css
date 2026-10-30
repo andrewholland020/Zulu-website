@@ -163,8 +163,9 @@ a.zl-nav-btn,a.zl-foot-link,a.zl-link-btn{text-decoration:none;display:inline-bl
 }
 @media (prefers-reduced-motion:reduce){.zl-header{transition:none}.zl-word,.zl-shine,.zl-live-dot{animation:none}.zl-hero-copy,.zl-scroll-line{animation:none}.zl-slide{animation:none}}
 
-.zl-header{background:rgba(11,31,58,.78) !important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 6px 24px rgba(0,0,0,.18)}
-.zl-header.is-scrolled{background:rgba(11,31,58,.94) !important}
+.zl-header{background:rgba(11,31,58,.5) !important;-webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.zl-header.is-scrolled{background:rgba(11,31,58,.62) !important}
+.zl-header .zl-nav-btn,.zl-header .zl-brand-name,.zl-header .zl-mono{text-shadow:0 1px 3px rgba(0,0,0,.35)}
 footer#contact{border-top:4px solid #F28C28 !important;background:#071326 !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 .zl-skel{min-height:190px;border-radius:16px;background:linear-gradient(100deg,#EEF2F7 30%,#F8FAFC 50%,#EEF2F7 70%);background-size:300% 100%;animation:zlSkel 1.4s ease-in-out infinite}
 .zl-skel-tall{min-height:340px}
