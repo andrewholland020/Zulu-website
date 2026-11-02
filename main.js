@@ -43,6 +43,9 @@
   function cacheSet(key, v) {
     try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {}
   }
+  function slugify(t) {
+    return String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'post';
+  }
   function safeUrl(u) {
     u = String(u || '').trim();
     return /^https:\/\//i.test(u) ? u : '';
@@ -112,7 +115,7 @@
   var posts = [];
   var DEFAULT_IMG = '/hero-dry-van.jpg';
   function postCard(p) {
-    var a = el('a'); a.className = 'zl-post-card'; a.href = '/blog?post=' + encodeURIComponent(p.id);
+    var a = el('a'); a.className = 'zl-post-card'; a.href = '/blog?post=' + encodeURIComponent(slugify(p.title));
     var img = el('img'); img.className = 'zl-post-img'; img.alt = ''; img.loading = 'lazy'; img.src = safeUrl(p.image) || DEFAULT_IMG;
     img.onerror = function () { img.onerror = null; img.src = DEFAULT_IMG; };
     var body = el('div', 'padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1');
@@ -136,7 +139,8 @@
     if (blogEmpty) blogEmpty.hidden = shown.length > 0;
   }
   function renderPost(id, final) {
-    var p = posts.filter(function (x) { return String(x.id) === String(id); })[0];
+    var p = posts.filter(function (x) { return slugify(x.title) === String(id); })[0] ||
+      posts.filter(function (x) { return String(x.id) === String(id); })[0]; // old links with the date still work
     if (!p) {
       if (!final) return;
       blogPost.innerHTML = '';
